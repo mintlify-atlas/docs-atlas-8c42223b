@@ -2,6 +2,7 @@
 title: "How the Music Bot Works: Nextcord, Wavelink, and Lavalink"
 sidebarTitle: "Overview"
 description: "Explore how Nextcord, Wavelink, and Lavalink interact at runtime to handle slash commands, audio streaming, and Discord presence updates."
+icon: "book-open-lines"
 ---
 
 The Simple Discord Music Bot is built on three cooperating layers: Nextcord manages the Discord Gateway and slash commands, Wavelink bridges Python async code to a dedicated audio server, and Lavalink handles all the heavy lifting of audio decoding and streaming. Understanding how these layers interact makes it much easier to extend the bot, debug playback issues, or tune its configuration.
@@ -22,7 +23,7 @@ Wavelink is an async Python library that acts as the glue between Nextcord and L
 
 Lavalink is a standalone Java audio server that runs as a separate process (or Docker container). It receives play instructions from Wavelink, resolves YouTube/SoundCloud URLs, decodes the audio stream, and pushes the audio data directly to Discord's voice servers — completely bypassing the bot's Python process. This is why no local FFmpeg installation is required on the bot host.
 
-```
+```text
 Discord Gateway
       │
       ▼
@@ -98,7 +99,7 @@ The handler:
    - Calls `player.disconnect()` to leave the voice channel.
    - Resets bot presence to `None` via `bot.change_presence(activity=None)`.
 
-## ACTIVE_PLAYERS Registry
+## ACTIVE\_PLAYERS Registry
 
 The module-level dictionary `ACTIVE_PLAYERS` is the bot's mechanism for maintaining a single persistent "Now Playing" embed per guild:
 
@@ -135,7 +136,7 @@ await bot.change_presence(
 Lavalink's audio source support is configured entirely in `application.yml`. The bot ships with three sources enabled:
 
 | Source | Configuration | Use Case |
-|---|---|---|
+| --- | --- | --- |
 | **YouTube** | `dev.lavalink.youtube:youtube-plugin:1.18.1` | Search queries, direct video IDs, and playlists |
 | **SoundCloud** | Built-in (`soundcloud: true`, `scSearch: true`) | SoundCloud track URLs and search |
 | **HTTP** | Built-in (`http: true`) | Direct `.mp3` / audio URLs, 24/7 radio streams |
@@ -150,12 +151,15 @@ YouTube support is provided by the community plugin rather than Lavalink's built
   <Card title="Queue View" icon="list" href="/architecture/queue-view">
     How the paginated Discord UI for browsing the queue is built and secured.
   </Card>
+
   <Card title="Lavalink Setup" icon="server" href="/guides/lavalink-setup">
     Step-by-step guide to running Lavalink with Docker Compose.
   </Card>
+
   <Card title="Playback Commands" icon="play" href="/commands/playback">
     Reference for /play, /skip, /pause, /resume, /stop, and /nowplaying.
   </Card>
+
   <Card title="Configuration" icon="gear" href="/configuration">
     All configurable values in application.yml and .env explained.
   </Card>

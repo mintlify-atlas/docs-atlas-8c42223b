@@ -2,6 +2,8 @@
 title: "Simple Discord Music Bot: Lavalink-Powered Audio for Discord"
 sidebarTitle: "Introduction"
 description: "A Python Discord music bot built with Nextcord and Wavelink, using Lavalink for high-quality audio streaming, slash commands, and playlist support."
+icon: "address-book"
+mode: "default"
 ---
 
 Simple Discord Music Bot is a high-performance, open-source music bot for Discord servers. Built in Python using Nextcord as the Discord API wrapper and Wavelink as the async Lavalink client, it offloads all audio decoding and streaming work to a dedicated Lavalink Java server — delivering crystal-clear sound with low resource overhead on the bot process itself. The project was inspired by a similar discord.py implementation and rewritten from the ground up for Nextcord, and is released under the MIT license.
@@ -35,7 +37,7 @@ A user issues a slash command in Discord. Nextcord receives it in `bot.py` and c
 ## Technology Stack
 
 | Component | Role |
-|---|---|
+| --- | --- |
 | **Nextcord** | Discord API wrapper; handles slash commands, embeds, voice protocol, and gateway events |
 | **Wavelink** | Async Python client for Lavalink; manages nodes, queues, and playback events |
 | **Lavalink** | Java audio server; handles source fetching, decoding, and low-latency streaming |
@@ -48,12 +50,15 @@ A user issues a slash command in Discord. Nextcord receives it in `bot.py` and c
   <Card title="Quickstart" icon="rocket" href="/quickstart">
     Get the bot running in minutes — clone, configure, and play your first song.
   </Card>
+
   <Card title="Configuration" icon="gear" href="/configuration">
     Customize environment variables, Lavalink connection settings, and bot permissions.
   </Card>
+
   <Card title="Lavalink Setup" icon="server" href="/guides/lavalink-setup">
     Deep-dive into running and tuning the Lavalink Docker node.
   </Card>
+
   <Card title="Playback Commands" icon="music" href="/commands/playback">
     Full reference for every slash command the bot exposes.
   </Card>

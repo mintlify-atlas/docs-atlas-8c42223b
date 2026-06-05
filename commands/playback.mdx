@@ -2,6 +2,7 @@
 title: "Playback Commands: Play, Skip, Pause, Resume, Stop"
 sidebarTitle: "Playback"
 description: "Control music playback with slash commands to play songs, skip tracks, pause and resume audio, and fully disconnect the bot when done."
+icon: "play-circle"
 ---
 
 The playback commands are the core of the Simple Discord Music Bot. They let you search for and queue songs, control playback state, and disconnect the bot from a voice channel when you're done. All responses are ephemeral — only the user who ran the command sees them — so your channel stays clean. Each command connects to the bot's [Wavelink](https://wavelink.dev/) player, which manages the underlying Lavalink audio node.
@@ -36,7 +37,7 @@ The `/play` command is the primary way to get music going. It accepts either a p
 **Error responses**
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | User is not in a voice channel | `"You must be in a voice channel."` (ephemeral, deletes after 5 s) |
 | Search returns no results | `"No results found."` (ephemeral, deletes after 5 s) |
 
@@ -59,7 +60,7 @@ The `/play` command is the primary way to get music going. It accepts either a p
 **Error responses**
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | Nothing is playing or paused | `"Not playing anything to skip."` |
 
 <Note>
@@ -86,7 +87,7 @@ The `/play` command is the primary way to get music going. It accepts either a p
 **Error responses**
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | Bot is not in a voice channel | `"I'm not in a voice channel."` (ephemeral) |
 | Nothing is currently playing | `"Nothing is currently playing."` (ephemeral) |
 
@@ -110,7 +111,7 @@ The `/play` command is the primary way to get music going. It accepts either a p
 **Error responses**
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | Bot is not in a voice channel | `"I'm not in a voice channel."` (ephemeral) |
 | Player is not currently paused | `"I'm not paused right now."` (ephemeral) |
 
@@ -136,7 +137,7 @@ The `/play` command is the primary way to get music going. It accepts either a p
 **Error responses**
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | Bot is not connected to a voice channel | `"I'm not connected to any voice channel."` (ephemeral) |
 
 <Tip>

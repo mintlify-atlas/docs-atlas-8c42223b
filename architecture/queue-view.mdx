@@ -2,6 +2,7 @@
 title: "QueueView: Paginated Discord UI for Queue Browsing"
 sidebarTitle: "Queue View"
 description: "Learn how QueueView, a nextcord.ui.View subclass, renders a paginated embed and restricts pagination to the original command invoker."
+icon: "toolbox"
 ---
 
 When a user runs `/queue`, the bot needs to display an arbitrary number of queued tracks in a readable, interactive format. `QueueView` — defined in `views.py` — solves this with a paginated Discord embed that the invoker can page through using buttons, while preventing other users from hijacking the navigation controls.
@@ -64,7 +65,7 @@ max_pages = max(1, (len(self.songs) - 1) // self.per_page + 1)
 
 The embed title follows the pattern `🎶 Music Queue (Page {page+1}/{max_pages})`, making the user's position in the list immediately clear. Each song entry in the description is formatted as:
 
-```
+```text
 **{idx}.** {title} ({M}:{SS})
 ```
 

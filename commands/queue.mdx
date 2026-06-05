@@ -2,6 +2,7 @@
 title: "Queue Commands: Browse, Shuffle, and Clear the Queue"
 sidebarTitle: "Queue"
 description: "Manage the music queue with slash commands to browse paginated track listings, randomize the playback order, and clear all upcoming songs."
+icon: "people-line"
 ---
 
 The queue commands give you visibility and control over the tracks lined up after the current song. You can browse the full queue in a paginated, interactive embed, randomize the playback order with a single command, or wipe upcoming tracks while leaving the current song untouched. All three commands are accessible by any server member while the bot is active.
@@ -27,7 +28,7 @@ The queue commands give you visibility and control over the tracks lined up afte
 **Error responses**
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | Bot is not connected or queue is empty | `"The queue is currently empty."` (ephemeral) |
 
 ---
@@ -46,7 +47,7 @@ The `QueueView` class (defined in `views.py`) is a `nextcord.ui.View` subclass t
 **Buttons**
 
 | Button | Label | Style | Disabled when |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Previous page | `⬅️ Prev` | Primary (blue) | Already on page 1 |
 | Next page | `Next ➡️` | Primary (blue) | Already on the last page |
 
@@ -104,7 +105,7 @@ Each page slice is `songs[page * per_page : (page + 1) * per_page]`.
 **Error responses**
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | Queue is empty or bot is not connected | `"The queue is currently empty, nothing to shuffle."` (ephemeral) |
 
 <Tip>

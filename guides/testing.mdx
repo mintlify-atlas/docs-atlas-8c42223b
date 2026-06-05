@@ -2,6 +2,7 @@
 title: "Test the Discord Music Bot Using Pytest and Watchdog"
 sidebarTitle: "Testing"
 description: "Run the pytest suite for async slash command callbacks and QueueView logic, and use pytest-watch to catch regressions automatically on every file save."
+icon: "tachometer-alt-fastest"
 ---
 
 The project includes a dedicated test file, `test_bot.py`, that exercises the core slash command callbacks and the `QueueView` pagination component. Because Discord command handlers are `async` functions, the suite relies on `pytest-asyncio` to drive the event loop. A watchdog runner (`pytest-watch`) is also available to automatically re-run tests whenever a source file changes, making it straightforward to get tight feedback during development.
@@ -21,7 +22,7 @@ pytest-watch
 ```
 
 | Package | Role |
-|---|---|
+| --- | --- |
 | `pytest` | Test runner and assertion engine |
 | `pytest-asyncio` | Runs `async def` test functions inside an event loop |
 | `pytest-watch` (`ptw`) | Watchdog that re-runs `pytest` on every `.py` file change |
@@ -34,33 +35,43 @@ pytest-watch
   <Card title="test_queue_view_pagination_logic" icon="table-list">
     Verifies that `QueueView` correctly calculates page slices, disables the **Prev** button on page one, enables the **Next** button when more pages exist, and sets the correct footer text.
   </Card>
+
   <Card title="test_skip_command_playing" icon="forward-step">
     Mocks the voice client and confirms that `vc.skip()` is called and the appropriate response message is sent.
   </Card>
+
   <Card title="test_pause_command_success" icon="pause">
     Confirms that `vc.pause(True)` is called when a track is playing and the bot is in a voice channel.
   </Card>
+
   <Card title="test_resume_command_success" icon="play">
     Confirms that `vc.pause(False)` is called when the player is in a paused state.
   </Card>
+
   <Card title="test_clearqueue_command" icon="trash">
     Verifies that `vc.queue.clear()` is invoked and the confirmation message is sent.
   </Card>
+
   <Card title="test_shuffle_command_success" icon="shuffle">
     Verifies that `vc.queue.shuffle()` is invoked when the queue is non-empty.
   </Card>
+
   <Card title="test_stop_command_success" icon="stop">
     Asserts that `vc.disconnect()`, `vc.queue.clear()`, `ACTIVE_PLAYERS` cleanup, and presence reset all occur together.
   </Card>
+
   <Card title="test_play_command_new_connection" icon="music">
     Patches `wavelink.Playable.search`, mocks a new voice connection, and verifies that `queue.put_wait` and `vc.play` are both called.
   </Card>
+
   <Card title="test_play_command_no_results" icon="ban">
     Verifies that when `wavelink.Playable.search` returns an empty list, `queue.put_wait` and `vc.play` are **not** called.
   </Card>
+
   <Card title="test_nowplaying_command_playing" icon="circle-info">
     Asserts that the embed has the title `"💿 Currently Playing"` and that the Artist field value matches the mocked track's author.
   </Card>
+
   <Card title="test_ping_command" icon="signal">
     Patches `bot.latency` to `0.05` and confirms the response message contains the formatted latency `"Pong! Latency: 50ms"`.
   </Card>
@@ -71,13 +82,13 @@ pytest-watch
 Fixtures in `test_bot.py` provide shared mock objects and automatic cleanup so each test starts with a predictable state.
 
 | Fixture | Scope | Description |
-|---|---|---|
+| --- | --- | --- |
 | `songs` | function | List of 3 tuples `(url, title, artwork, duration)` used to seed `QueueView` |
 | `mock_track` | function | `MagicMock(spec=wavelink.Playable)` with `title="Test Song"` and `length=180000` |
 | `mock_user` | function | `MagicMock(spec=nextcord.User)` with `id=12345`, `display_name="TestUser"`, `avatar=None` |
 | `guild_id` | function | String `"987654321"` representing a fake Discord guild ID |
-| `mock_bot_presence` *(autouse)* | function | Patches `bot.bot.change_presence` with `AsyncMock`; auto-applied to every test |
-| `clean_active_players` *(autouse)* | function | Calls `bot.ACTIVE_PLAYERS.clear()` before and after each test; auto-applied to every test |
+| `mock_bot_presence`_(autouse)_ | function | Patches `bot.bot.change_presence` with `AsyncMock`; auto-applied to every test |
+| `clean_active_players`_(autouse)_ | function | Calls `bot.ACTIVE_PLAYERS.clear()` before and after each test; auto-applied to every test |
 
 The two `autouse` fixtures ensure that bot presence calls are intercepted (preventing real Discord API calls) and that the global `ACTIVE_PLAYERS` dict never leaks state between tests.
 

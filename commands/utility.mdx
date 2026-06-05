@@ -2,6 +2,7 @@
 title: "Utility Commands: Now Playing, Ping, and Help Reference"
 sidebarTitle: "Utility"
 description: "Inspect the current track with a rich embed, check WebSocket latency in milliseconds, and list every available command in one place."
+icon: "tools"
 ---
 
 The utility commands round out the bot's feature set with diagnostic and informational tools. `/nowplaying` surfaces a detailed embed for the active track, `/ping` reports the bot's WebSocket latency so you can spot connection issues, and `/help` gives any user a quick reference of every available slash command. All three commands respond ephemerally, keeping channel clutter to a minimum. They also depend on two internal helper functions — `format_time` and `get_track_artwork` — that are shared across the entire codebase.
@@ -33,7 +34,7 @@ The utility commands round out the bot's feature set with diagnostic and informa
 **Error responses**
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | Bot is not playing anything | `"Nothing is currently playing."` (ephemeral) |
 
 ---
@@ -74,7 +75,7 @@ The utility commands round out the bot's feature set with diagnostic and informa
 **Commands listed**
 
 | Command | Description shown |
-|---|---|
+| --- | --- |
 | `/play [song name or URL]` | Play a song or add it to the queue |
 | `/skip` | Skip the currently playing song |
 | `/pause` | Pause the currently playing song |
@@ -108,7 +109,7 @@ def format_time(ms: int) -> str:
 **Examples**
 
 | Input (ms) | Output |
-|---|---|
+| --- | --- |
 | `180000` | `"3:00"` |
 | `3661000` | `"61:01"` |
 | `90500` | `"1:30"` |

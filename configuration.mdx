@@ -2,6 +2,7 @@
 title: "Configuration: Bot Token, Lavalink, and Permissions"
 sidebarTitle: "Configuration"
 description: "Set up your bot token, Lavalink connection credentials, server audio settings, and required Discord permissions for full functionality."
+icon: "gear-code"
 ---
 
 Simple Discord Music Bot is configured through three places: a `.env` file for secrets, a small section of `bot.py` for the Lavalink connection, and `application.yml` for the Lavalink server itself. Understanding where each setting lives — and how they must stay in sync — will save you time when moving the bot from a local machine to a remote server or adjusting audio performance.
@@ -17,10 +18,11 @@ The bot uses `python-dotenv` to load sensitive values from a `.env` file in the 
 ### Required Variables
 
 | Variable | Description |
-|---|---|
+| --- | --- |
 | `BOT_TOKEN` | Your Discord bot's secret token. Required — the bot will not start without it. |
 
 **How to get your token:**
+
 1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
 2. Select your application (or create one) and open the **Bot** tab
 3. Click **Reset Token** to reveal a fresh token, then copy it immediately
@@ -42,7 +44,7 @@ await wavelink.Pool.connect(nodes=[node], client=bot)
 ```
 
 | Parameter | Default Value | Description |
-|---|---|---|
+| --- | --- | --- |
 | `uri` | `http://127.0.0.1:2333` | The address of the Lavalink node. Port `2333` must match `server.port` in `application.yml`. |
 | `password` | `youshallnotpass` | The shared secret used to authenticate with the Lavalink node. Must match `lavalink.server.password` in `application.yml`. |
 
@@ -76,7 +78,7 @@ server:
 ```
 
 | Setting | Value | Description |
-|---|---|---|
+| --- | --- | --- |
 | `server.port` | `2333` | The port Lavalink listens on. Must match the port in `bot.py`'s `uri`. |
 | `server.address` | `0.0.0.0` | Binds Lavalink to all network interfaces so Docker can route traffic to it. |
 
@@ -105,7 +107,7 @@ lavalink:
 ```
 
 | Source | Enabled | Notes |
-|---|---|---|
+| --- | --- | --- |
 | `youtube` | `false` (via native) | YouTube is handled by the external plugin below — the built-in source is disabled |
 | `soundcloud` | `true` | Enables SoundCloud track streaming |
 | `scSearch` | `true` | Enables SoundCloud search queries |
@@ -131,7 +133,7 @@ plugins:
 ```
 
 | Setting | Value | Description |
-|---|---|---|
+| --- | --- | --- |
 | `enabled` | `true` | Activates the YouTube plugin |
 | `allowSearch` | `true` | Allows searching YouTube by keyword (e.g., `/play lofi hip hop`) |
 | `allowDirectVideoIds` | `true` | Allows playing tracks via a direct YouTube video URL |
@@ -154,10 +156,12 @@ This is suitable for a small to medium-sized server. If you run many simultaneou
 When inviting the bot to your server, grant the following permissions. All of these are required for normal operation:
 
 **Voice Permissions:**
+
 - **Connect** — allows the bot to join voice channels
 - **Speak** — allows the bot to transmit audio into a voice channel
 
 **Text Permissions:**
+
 - **Send Messages** — required to post Now Playing embeds and command responses
 - **Embed Links** — required to render rich embeds with artwork and track details
 - **Read Message History** — required so the bot can locate and edit its persistent Now Playing message

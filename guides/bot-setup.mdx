@@ -2,6 +2,7 @@
 title: "Register and Configure Your Discord Bot Application"
 sidebarTitle: "Bot Setup"
 description: "Create a Discord application, configure the required gateway intents, generate an invite URL, and run the bot against your Lavalink node."
+icon: "discord"
 ---
 
 Before the bot can join a voice channel and play music, you need a registered Discord application with a bot token, the correct gateway intents enabled, and an invite link scoped to the right permissions. This guide walks through each step in the Discord Developer Portal and then shows exactly what happens when `bot.py` starts up.
@@ -16,15 +17,12 @@ Before the bot can join a voice channel and play music, you need a registered Di
   <Step title="Open the Developer Portal">
     Navigate to [https://discord.com/developers/applications](https://discord.com/developers/applications) and sign in with your Discord account.
   </Step>
-
   <Step title="Create a new application">
     Click **New Application** in the top-right corner. Give it a name — this becomes the default bot username — then click **Create**.
   </Step>
-
   <Step title="Add a bot user">
     In the left sidebar, open the **Bot** tab. Click **Add Bot** and confirm. Discord creates a bot user attached to your application.
   </Step>
-
   <Step title="Copy your bot token">
     Under the **Token** section, click **Reset Token**, confirm the action, then copy the token that appears. This is your `BOT_TOKEN`.
 
@@ -41,7 +39,6 @@ Before the bot can join a voice channel and play music, you need a registered Di
     bot_token = os.getenv('BOT_TOKEN')
     ```
   </Step>
-
   <Step title="Enable Message Content Intent">
     Still on the **Bot** tab, scroll down to **Privileged Gateway Intents**. Enable **Message Content Intent**.
 
@@ -61,7 +58,7 @@ Before the bot can join a voice channel and play music, you need a registered Di
 When inviting the bot to a server you must grant it the permissions it needs to function. The table below lists every required permission and why it is needed.
 
 | Permission | Category | Reason |
-|---|---|---|
+| --- | --- | --- |
 | Connect | Voice | Join voice channels to stream audio |
 | Speak | Voice | Transmit audio through the voice connection |
 | Send Messages | Text | Post now-playing embeds and command responses |
@@ -74,24 +71,23 @@ When inviting the bot to a server you must grant it the permissions it needs to 
   <Step title="Open the OAuth2 URL Generator">
     In the Developer Portal, navigate to **OAuth2 → URL Generator** in the left sidebar.
   </Step>
-
   <Step title="Select scopes">
     Under **Scopes**, check both:
+
     - `bot`
     - `applications.commands`
 
     The `applications.commands` scope is required for Discord to register and display the slash commands that the bot syncs via `bot.sync_application_commands()`.
   </Step>
-
   <Step title="Select bot permissions">
     The **Bot Permissions** panel appears once `bot` is checked. Enable:
+
     - Connect
     - Speak
     - Send Messages
     - Embed Links
     - Read Message History
   </Step>
-
   <Step title="Copy and open the generated URL">
     Copy the URL at the bottom of the page, paste it into a browser, select the server you want to invite the bot to, and click **Authorise**.
   </Step>
@@ -133,7 +129,7 @@ async def on_ready():
 ## Configuration Reference
 
 | Value | Where | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | `BOT_TOKEN` | `.env` | Authenticates the bot with Discord's gateway |
-| `http://127.0.0.1:2333` | `bot.py` `on_ready` | Lavalink node URI |
-| `youshallnotpass` | `bot.py` `on_ready` | Lavalink node password (must match `application.yml`) |
+| `http://127.0.0.1:2333` | `bot.pyon_ready` | Lavalink node URI |
+| `youshallnotpass` | `bot.pyon_ready` | Lavalink node password (must match `application.yml`) |

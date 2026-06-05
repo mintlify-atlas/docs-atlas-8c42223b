@@ -2,6 +2,7 @@
 title: "Deploy Lavalink via Docker for Your Discord Music Bot"
 sidebarTitle: "Lavalink Setup"
 description: "Set up Lavalink, the standalone Java audio server that handles all audio decoding and streaming so your Python bot stays lightweight."
+icon: "docker"
 ---
 
 Lavalink is a standalone Java audio server that your bot delegates all audio decoding and streaming work to. Rather than processing audio inside the Python process, the bot sends playback instructions over HTTP to Lavalink, which handles the heavy lifting independently. Docker is the recommended way to run Lavalink — you get a fully reproducible environment without installing Java, managing versions, or touching system dependencies on your host machine.
@@ -35,7 +36,7 @@ services:
 Key values to note:
 
 | Field | Value | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | `image` | `ghcr.io/lavalink-devs/lavalink:4.2.2` | Pinned stable release |
 | `container_name` | `lavalink_node` | Friendly name for `docker` CLI commands |
 | `restart` | `unless-stopped` | Auto-restarts on crash; stops only on explicit `docker stop` |
@@ -106,7 +107,6 @@ Notable configuration choices:
 
     If Docker is not running, start Docker Desktop (macOS/Windows) or run `sudo systemctl start docker` (Linux).
   </Step>
-
   <Step title="Start Lavalink in the background">
     From the project root (the directory containing `docker-compose.yml`), run:
 
@@ -116,7 +116,6 @@ Notable configuration choices:
 
     The `-d` flag runs the container detached so it continues in the background after you close the terminal.
   </Step>
-
   <Step title="Verify Lavalink is running">
     Open `http://localhost:2333` in a browser or use `curl`:
 
@@ -126,7 +125,6 @@ Notable configuration choices:
 
     Lavalink returns a short HTML or JSON response when it is online. Any response on port 2333 confirms it is healthy.
   </Step>
-
   <Step title="Inspect the logs (optional)">
     To follow Lavalink's output in real time:
 
