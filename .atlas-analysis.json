@@ -1,0 +1,77 @@
+{
+  "projectType": "general",
+  "projectName": "Simple Discord Music Bot",
+  "projectDescription": "A Discord music bot built with Nextcord and Wavelink that streams audio via Lavalink, featuring slash commands for playback control, queue management, and interactive rich embeds.",
+  "theme": "palm",
+  "primaryColor": "#fc0404",
+  "lightColor": "#fc7c7c",
+  "darkColor": null,
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "configuration"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/lavalink-setup",
+              "guides/bot-setup",
+              "guides/testing"
+            ]
+          },
+          {
+            "group": "Command Reference",
+            "pages": [
+              "commands/playback",
+              "commands/queue",
+              "commands/utility"
+            ]
+          },
+          {
+            "group": "Architecture",
+            "pages": [
+              "architecture/overview",
+              "architecture/queue-view"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Lavalink-powered audio streaming for stable, low-resource music playback",
+    "Slash command interface with 11 commands covering full playback lifecycle",
+    "Interactive paginated queue browser with session-locked navigation",
+    "Dynamic 'Now Playing' rich embeds that auto-update and clean up",
+    "Automated bot presence synced to current track with live timestamps",
+    "Playlist support — enqueue entire playlists from YouTube and other sources",
+    "Comprehensive pytest test suite with async support and watchdog mode"
+  ],
+  "publicApiSurface": [
+    "/play <song>",
+    "/skip",
+    "/pause",
+    "/resume",
+    "/stop",
+    "/nowplaying",
+    "/queue",
+    "/clearqueue",
+    "/shuffle",
+    "/ping",
+    "/help",
+    "QueueView(songs, interaction_user, guild_id, per_page=10)",
+    "WavelinkPlayer (wavelink.Player + nextcord.VoiceProtocol bridge)",
+    "format_time(ms: int) -> str",
+    "get_track_artwork(track: wavelink.Playable) -> str",
+    "on_wavelink_track_start(payload)",
+    "on_wavelink_track_end(payload)"
+  ]
+}
