@@ -29,7 +29,7 @@ The `/play` command is the primary way to get music going. It accepts either a p
 - Stores the requester's display name and avatar URL in `track.extras` for attribution in embeds.
 - If the result is a `wavelink.Playlist`, all tracks are added to the queue and a confirmation embed shows the playlist name and total track count.
 - If the result is a single track, it is added to the queue and the embed shows the title, author, and formatted duration.
-- The confirmation embed uses an orange color, displays the track artwork as a thumbnail, and includes a footer crediting the requester.
+- The confirmation embed uses an orange color, displays the track artwork as a full-width image (`embed.set_image`), and includes a footer crediting the requester.
 - The confirmation message is ephemeral and auto-deletes after **10 seconds**.
 - If the bot is not already playing when the track is added, playback begins immediately via `vc.play(vc.queue.get())`.
 

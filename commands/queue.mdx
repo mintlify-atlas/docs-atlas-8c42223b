@@ -18,7 +18,7 @@ The queue commands give you visibility and control over the tracks lined up afte
 
 **Behavior**
 
-- Checks that the bot is playing and that `vc.queue` is not empty; sends an error and returns early otherwise.
+- Checks that the bot is connected to a voice channel (`vc` is not `None`) and that `vc.queue` is not empty; sends an error and returns early otherwise.
 - Iterates the Wavelink queue and builds a list of tuples in the form `(track.uri, track.title, track.artwork, track.length / 1000)`.
 - Creates a `QueueView` with the songs list, the invoking user, and the guild ID as a string.
 - Sends the first-page embed and the view as an ephemeral message.
@@ -28,7 +28,7 @@ The queue commands give you visibility and control over the tracks lined up afte
 
 | Situation | Response |
 |---|---|
-| Bot is not playing or queue is empty | `"The queue is currently empty."` (ephemeral) |
+| Bot is not connected or queue is empty | `"The queue is currently empty."` (ephemeral) |
 
 ---
 

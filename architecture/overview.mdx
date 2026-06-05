@@ -127,7 +127,7 @@ await bot.change_presence(
 
 - The `name` field combines the track title, artist, and formatted duration so users can see what's playing at a glance from the member list.
 - The `timestamps` dict drives Discord's live elapsed-time display. `start` is the Unix timestamp at the moment the track begins; `end` is `start + track length in seconds`.
-- The `url` field in a Discord activity must be a valid streaming URL. The bot checks whether `track.uri` belongs to YouTube (`youtube.com` / `youtu.be`) or Twitch (`twitch.tv`); any other domain (e.g. SoundCloud, direct HTTP streams) falls back to `https://www.youtube.com`.
+- The bot computes a `presence_url` by checking whether `track.uri` belongs to YouTube (`youtube.com` / `youtu.be`) or Twitch (`twitch.tv`), falling back to `https://www.youtube.com` for any other domain (e.g. SoundCloud, direct HTTP streams). This value is available for future use but is not passed as a field in the `Activity` constructor above.
 - When the queue ends or `/stop` is called, presence is cleared with `bot.change_presence(activity=None)`.
 
 ## Audio Sources
